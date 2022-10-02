@@ -16,22 +16,17 @@ export default function AccountLoginRoute() {
     <Container size={420} my={40}>
       <Title
         align="center"
+        transform="uppercase"
         sx={(theme) => ({
           fontFamily: `Greycliff CF, ${theme.fontFamily}`,
           fontWeight: 900,
         })}
+        size={"h4"}
       >
-        Welcome back!
+        Welcome back
       </Title>
-      <Text color="dimmed" size="sm" align="center" mt={5}>
-        Do not have an account yet?{" "}
-        <Anchor<"a">
-          href="#"
-          size="sm"
-          onClick={(event) => event.preventDefault()}
-        >
-          Create account
-        </Anchor>
+      <Text align="center" size={"sm"} color={"dimmed"} mt="md">
+        Sign in to access an enhanced shopping experience.
       </Text>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
@@ -42,20 +37,21 @@ export default function AccountLoginRoute() {
           required
           mt="md"
         />
-        <Group position="right" mt="md">
-        
-          <Anchor<"a">
-            onClick={(event) => event.preventDefault()}
-            href="#"
-            size="sm"
-          >
-            Forgot password?
-          </Anchor>
-        </Group>
+
         <Button fullWidth mt="xl">
           Sign in
         </Button>
       </Paper>
+      <Text color="dimmed" size="sm" align="center" mt={"lg"}>
+        Not a member?{" "}
+        <Anchor<"a">
+          href="#"
+          size="sm"
+          onClick={(event) => event.preventDefault()}
+        >
+          Join us
+        </Anchor>
+      </Text>
     </Container>
   );
 }

@@ -8,9 +8,24 @@ import {
   Container,
   Button,
 } from "@mantine/core";
-import { Form } from "@remix-run/react";
+import { ActionFunction, json, redirect } from "@remix-run/node";
+import { Form, useActionData } from "@remix-run/react";
+import { medusaClient } from "~/lib/medusa";
 
+export const action: ActionFunction = async ({ request }) => {
+  const formData = await request.formData();
+  const payload = Object.fromEntries(formData);
+
+  try {
+    const medusa = medusaClient();
+    await medusa.auth.authenticate(payload);
+    return redirect("/");
+  } catch (error) {
+    return json({ errors: error.response.data, fields: payload });
+  }
+};
 export default function AccountLoginRoute() {
+  const actionData = useActionData();
   return (
     <Container size={420} my={40}>
       <Title

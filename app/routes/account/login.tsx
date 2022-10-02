@@ -42,8 +42,8 @@ export default function AccountLoginRoute() {
           required
           mt="md"
         />
-        <Group position="apart" mt="md">
-          <Checkbox label="Remember me" />
+        <Group position="right" mt="md">
+        
           <Anchor<"a">
             onClick={(event) => event.preventDefault()}
             href="#"

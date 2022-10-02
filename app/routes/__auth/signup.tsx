@@ -11,7 +11,7 @@ import {
   Stack,
 } from "@mantine/core";
 import { ActionFunction, json, redirect } from "@remix-run/node";
-import { Form, useActionData, useTransition } from "@remix-run/react";
+import { Form, Link, useActionData, useTransition } from "@remix-run/react";
 import { FiAlertCircle } from "react-icons/fi";
 import { medusaClient } from "~/lib/medusa";
 
@@ -122,11 +122,7 @@ export default function AccountSignupRoute() {
       </Paper>
       <Text color="dimmed" size="sm" align="center" mt={"lg"}>
         Not a member?{" "}
-        <Anchor<"a">
-          href="#"
-          size="sm"
-          onClick={(event) => event.preventDefault()}
-        >
+        <Anchor component={Link} to="/login" size="sm">
           Sign in
         </Anchor>
       </Text>

@@ -9,7 +9,7 @@ import {
   Button,
 } from "@mantine/core";
 import { ActionFunction, json, redirect } from "@remix-run/node";
-import { Form, useActionData } from "@remix-run/react";
+import { Form, useActionData, useTransition } from "@remix-run/react";
 import { medusaClient } from "~/lib/medusa";
 
 export const action: ActionFunction = async ({ request }) => {
@@ -26,6 +26,9 @@ export const action: ActionFunction = async ({ request }) => {
 };
 export default function AccountLoginRoute() {
   const actionData = useActionData();
+  const transition = useTransition();
+
+  console.log(actionData)
   return (
     <Container size={420} my={40}>
       <Title
@@ -51,6 +54,7 @@ export default function AccountLoginRoute() {
             label="Email"
             placeholder="Your email"
             required
+            defaultValue={actionData?.fields?.email}
           />
           <PasswordInput
             name="password"
@@ -58,9 +62,15 @@ export default function AccountLoginRoute() {
             placeholder="Your password"
             required
             mt="md"
+            defaultValue={actionData?.fields?.password}
           />
 
-          <Button fullWidth mt="xl">
+          <Button
+            type="submit"
+            fullWidth
+            mt="xl"
+            loading={transition.state === "submitting"}
+          >
             Sign in
           </Button>
         </Form>

@@ -7,6 +7,7 @@ import {
   Text,
   Container,
   Button,
+  Alert,
 } from "@mantine/core";
 import { ActionFunction, json, redirect } from "@remix-run/node";
 import { Form, useActionData, useTransition } from "@remix-run/react";
@@ -28,7 +29,7 @@ export default function AccountLoginRoute() {
   const actionData = useActionData();
   const transition = useTransition();
 
-  console.log(actionData)
+  console.log(actionData);
   return (
     <Container size={420} my={40}>
       <Title
@@ -47,6 +48,18 @@ export default function AccountLoginRoute() {
       </Text>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+        {actionData.errors && (
+          <Alert
+            icon={<IconAlertCircle size={16} />}
+            title="Login"
+            color="red"
+            radius="md"
+          >
+            {typeof actionData.errors === "string"
+              ? actionData.errors
+              : actionData.errors?.message}
+          </Alert>
+        )}
         <Form method="post">
           <TextInput
             name="email"

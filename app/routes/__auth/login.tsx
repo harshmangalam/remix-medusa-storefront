@@ -11,6 +11,7 @@ import {
 } from "@mantine/core";
 import { ActionFunction, json, redirect } from "@remix-run/node";
 import { Form, useActionData, useTransition } from "@remix-run/react";
+import {FiAlertCircle} from "react-icons/fi"
 import { medusaClient } from "~/lib/medusa";
 
 export const action: ActionFunction = async ({ request }) => {
@@ -48,12 +49,13 @@ export default function AccountLoginRoute() {
       </Text>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-        {actionData.errors && (
+        {actionData?.errors && (
           <Alert
-            icon={<IconAlertCircle size={16} />}
+            icon={<FiAlertCircle size={16} />}
             title="Login"
             color="red"
             radius="md"
+            mb="xl"
           >
             {typeof actionData.errors === "string"
               ? actionData.errors

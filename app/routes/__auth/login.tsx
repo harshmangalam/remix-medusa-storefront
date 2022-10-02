@@ -8,6 +8,7 @@ import {
   Container,
   Button,
 } from "@mantine/core";
+import { Form } from "@remix-run/react";
 
 export default function AccountLoginRoute() {
   return (
@@ -28,17 +29,26 @@ export default function AccountLoginRoute() {
       </Text>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-        <TextInput label="Email" placeholder="you@mantine.dev" required />
-        <PasswordInput
-          label="Password"
-          placeholder="Your password"
-          required
-          mt="md"
-        />
+        <Form method="post">
+          <TextInput
+            name="email"
+            type="email"
+            label="Email"
+            placeholder="Your email"
+            required
+          />
+          <PasswordInput
+            name="password"
+            label="Password"
+            placeholder="Your password"
+            required
+            mt="md"
+          />
 
-        <Button fullWidth mt="xl">
-          Sign in
-        </Button>
+          <Button fullWidth mt="xl">
+            Sign in
+          </Button>
+        </Form>
       </Paper>
       <Text color="dimmed" size="sm" align="center" mt={"lg"}>
         Not a member?{" "}

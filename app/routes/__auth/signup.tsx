@@ -44,10 +44,10 @@ export default function AccountSignupRoute() {
         })}
         size={"h4"}
       >
-        BECOME A ACME MEMBER
+        BECOME A HOMEMADE MEMBER
       </Title>
       <Text align="center" size={"sm"} color={"dimmed"} mt="md">
-        Create your Acme Member profile, and get access to an enhanced shopping
+        Create your Homemade Member profile, and get access to an enhanced shopping
         experience.
       </Text>
 

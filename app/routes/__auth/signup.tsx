@@ -15,6 +15,19 @@ import { Form, useActionData, useTransition } from "@remix-run/react";
 import { FiAlertCircle } from "react-icons/fi";
 import { medusaClient } from "~/lib/medusa";
 
+export const action: ActionFunction = async ({ request }) => {
+  const formData = await request.formData();
+  const payload = Object.fromEntries(formData);
+
+  try {
+    const medusa = medusaClient();
+    await medusa.customers.create(payload);
+    return redirect("/login");
+  } catch (error) {
+    return json({ errors: error.response.data, fields: payload });
+  }
+};
+
 export default function AccountSignupRoute() {
   const actionData = useActionData();
   const transition = useTransition();
@@ -42,7 +55,7 @@ export default function AccountSignupRoute() {
         {actionData?.errors && (
           <Alert
             icon={<FiAlertCircle size={16} />}
-            title="Login"
+            title="Signup"
             color="red"
             radius="md"
             mb="xl"

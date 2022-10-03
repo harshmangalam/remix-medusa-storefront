@@ -4,6 +4,7 @@ import {
   Container,
   Group,
   Image,
+  Radio,
   SimpleGrid,
   Stack,
   Text,
@@ -44,6 +45,13 @@ export default function ProductsHandleRoute() {
           {/* select size */}
           <Stack mt="xl">
             <Title size={"h5"}>Select size</Title>
+            <Radio.Group
+              label="Select your favorite framework/library"
+              description="This is anonymous"
+              withAsterisk
+            >
+              <Radio value="react" label="React" />
+            </Radio.Group>
           </Stack>
         </Box>
       </SimpleGrid>
